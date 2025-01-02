@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "operation_type": {
+      "type": "string",
+      "enum": ["sale"]
+    },
+    "operation_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "operation_place": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "passenger": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "surname": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "patronymic": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "doc_type": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9]+$"
+        },
+        "doc_number": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9]+$"
+        },
+        "birthdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["M", "F"]
+        },
+        "passenger_type": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "ticket_number": {
+          "type": "string",
+          "pattern": "^[0-9]{13}$"
+        },
+        "ticket_type": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "name",
+        "surname",
+        "doc_type",
+        "doc_number",
+        "birthdate",
+        "gender",
+        "passenger_type",
+        "ticket_number",
+        "ticket_type"
+      ],
+      "additionalProperties": false
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "airline_code": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "flight_num": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "depart_place": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "depart_datetime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "arrive_place": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "arrive_datetime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pnr_id": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "airline_code",
+          "flight_num",
+          "depart_place",
+          "depart_datetime",
+          "arrive_place",
+          "arrive_datetime",
+          "pnr_id"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "operation_type",
+    "operation_time",
+    "operation_place",
+    "passenger",
+    "routes"
+  ],
+  "additionalProperties": false
+}
